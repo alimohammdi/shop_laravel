@@ -29,7 +29,13 @@
                                 {!! Form::submit('خروج از تاپ کالا',['class'=>'btn btn-danger']) !!}
                                 {!! Form::close()!!}
                             </div>
+                            <div class="text-center" >
+                                <a  href="{{ route('profile.home') }}" class="btn btn-info text-white">پروفایل کاربری</a>
+                            </div>
                         </ul>
+
+
+
                     @else
                         <a href="#" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
                            id="navbarDropdownMenuLink1">

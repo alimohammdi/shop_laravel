@@ -9,10 +9,14 @@
                         <div class="xs-d-none mb-50-xs break-320-576-none">
                             <img src="{{ asset('admin/img/bg-img/1.png') }}" alt="">
                         </div>
+
                     </div>
                     <div class="col-md-6">
                         <!-- Logo -->
                         <h4 class="font-18 mb-30">ورود به پنل کاربری</h4>
+                        @if(session('error-verify'))
+                            <div class="alert alert-danger m-2"> {{session('error-verify') }} </div>
+                        @endif
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group">

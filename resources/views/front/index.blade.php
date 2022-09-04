@@ -1,5 +1,7 @@
 @extends('front.layouts.master')
+@section('title','تاپ کالا')
 @section('content')
+<main class="main default">
     <div class="container">
         <!-- banner -->
         <div class="row banner-ads">
@@ -747,4 +749,5 @@
         </div>
         @include('front.partials.brands')
     </div>
+</main>
 @endsection

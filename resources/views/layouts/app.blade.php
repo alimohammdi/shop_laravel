@@ -12,6 +12,8 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('admin/img/core-img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('admin/style.css') }}">
+{{--    script for sweet alert--}}
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body class="login-area">
 
@@ -75,7 +77,7 @@
 
 <!-- Active JS -->
 <script src="{{ asset('admin/js/default-assets/active.js') }}"></script>
-
+@include('sweet::alert')
 </body>
 
 </html>

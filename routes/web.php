@@ -20,6 +20,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('front.index');
 });
+// profile
+
+Route::group(['prefix'=>"profile",'middleware'=>'auth'],function () {
+    Route::get('/',[\App\Http\Controllers\front\profileController::class,'index'])->name('profile.home');
+});
+// tow factor user
+Route::get('towfactore',[\App\Http\Controllers\front\profileController::class,'towfactore'])->name('profile.towfactore');
+Route::post('towfactore',[\App\Http\Controllers\front\profileController::class,'towfactoreAuth'])->name('request.towfactore');
+Route::get('verify_phone_number',[\App\Http\Controllers\front\profileController::class,'verifyPage'])->name('verify.index');
+route::post('verify_phone_number',[\App\Http\Controllers\front\profileController::class,'verifyPhoneNumber'])->name('verify.phone.number');
+
+
+
+// token code for authenticated
+Route::get('send-token-code',[\App\Http\Controllers\Auth\AuthTokenController::class,'indexPage'])->name('send-token-code');
+Route::post('send-token-code',[\App\Http\Controllers\Auth\AuthTokenController::class,'postToken']);
+
 
 
 
