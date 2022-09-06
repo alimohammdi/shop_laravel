@@ -50,4 +50,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Activecode::class);
     }
+
+
+//    check admin or operator user
+        public function isAdmin(){
+          return $this->is_admin;
+        }
+        public function isOperator(){
+            return $this->is_operator;
+        }
 }

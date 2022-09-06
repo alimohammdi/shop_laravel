@@ -1,6 +1,13 @@
 <nav>
     <ul class="sidebar-menu" data-widget="tree">
-        <li class="active"><a href="index.html"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
+        <li class="{{  request()->is('dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard.home') }}"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
+        <li class="treeview @php if( (request()->is('dashboard/users')) || ( request()->is('dashboard/users/create'))){echo  'active';} @endphp">
+            <a href="javascript:void(0)"><i class="zmdi zmdi-apps "></i> <span>مدیریت کاربران</span> <i class="fa fa-angle-left"></i></a>
+            <ul class="treeview-menu">
+                <li ><a href="{{ route('users.index') }}" style="{{ request()->is('dashboard/users') ? 'color:black' : ''}}">نمایش کاربران</a></li>
+                <li ><a href="{{ route('users.create') }}" style="{{ request()->is('dashboard/users/create') ? 'color:black' : ''}}">اضافه کردن کاربر</a></li>
+            </ul>
+        </li>
         <li class="treeview">
             <a href="javascript:void(0)"><i class="zmdi zmdi-apps"></i> <span>برنامه ها</span> <i class="fa fa-angle-left"></i></a>
             <ul class="treeview-menu">

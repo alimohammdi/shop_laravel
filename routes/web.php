@@ -41,9 +41,11 @@ Route::post('send-token-code',[\App\Http\Controllers\Auth\AuthTokenController::c
 
 
 //ADMIN
-Route::middleware('auth')->prefix('/panel')->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::middleware(['auth','auth.admin'])->prefix('/dashboard')->group(function () {
+    //       Manage Users
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard.home');
+    Route::resource('users',\App\Http\Controllers\Admin\UsersController::class)->parameters(['users'=>'id']);
 });
 
 

@@ -77,7 +77,7 @@
 
 <!-- Active JS -->
 <script src="{{ asset('admin/js/default-assets/active.js') }}"></script>
-@include('sweet::alert')
+{{--@include('sweet::alert')--}}
 </body>
 
 </html>

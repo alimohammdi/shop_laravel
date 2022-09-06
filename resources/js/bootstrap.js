@@ -13,7 +13,7 @@ import axios from 'axios';
 window.axios = axios;
 
 // required sweet alert
-require("sweetalert");
+required("sweetalert");
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
