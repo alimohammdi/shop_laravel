@@ -8,6 +8,13 @@
                 <li ><a href="{{ route('users.create') }}" style="{{ request()->is('dashboard/users/create') ? 'color:black' : ''}}">اضافه کردن کاربر</a></li>
             </ul>
         </li>
+        <li class="treeview @php if( (request()->is('dashboard/products')) || ( request()->is('dashboard/products/create'))){echo  'active';} @endphp">
+            <a href="javascript:void(0)"><i class="zmdi zmdi-apps "></i> <span>مدیریت محصولات</span> <i class="fa fa-angle-left"></i></a>
+            <ul class="treeview-menu">
+                <li ><a href="{{ route('products.index') }}" style="{{ request()->is('dashboard/products') ? 'color:black' : ''}}">نمایش محصولات </a></li>
+                <li ><a href="{{ route('products.create') }}" style="{{ request()->is('dashboard/products/create') ? 'color:black' : ''}}">اضافه کردن محصول</a></li>
+            </ul>
+        </li>
         <li class="treeview">
             <a href="javascript:void(0)"><i class="zmdi zmdi-apps"></i> <span>برنامه ها</span> <i class="fa fa-angle-left"></i></a>
             <ul class="treeview-menu">

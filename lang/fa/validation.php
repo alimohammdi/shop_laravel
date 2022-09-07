@@ -172,6 +172,9 @@ return [
         'province'              => 'استان',
         'status'                => 'وضعیت',
         'active'                => 'فعال',
-        'not_active'             => 'غیر فعال'
+        'not_active'            => 'غیر فعال',
+        'price'                 => 'قیمت',
+        'amount'                => 'موجودی',
+        'image'                 => 'تصویر'
     ],
 ];
