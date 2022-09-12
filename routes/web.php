@@ -20,23 +20,33 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('front.index');
 });
-// profile
+//----------------------------------------------------------------------->>>>>
 
+// products page
+Route::get('Products-page',[\App\Http\Controllers\ProductFrontController::class,'allProducts'])->name('all.products.page');
+Route::get('single-product/{product}',[\App\Http\Controllers\ProductFrontController::class,'showSingleProduct'])->name('single.products');
+Route::post('send-comment',[\App\Http\Controllers\ProductFrontController::class,'sendComment'])->name('send.comment');
+//----------------------------------------------------------------------->>>>>
+
+// profile
 Route::group(['prefix'=>"profile",'middleware'=>'auth'],function () {
     Route::get('/',[\App\Http\Controllers\front\profileController::class,'index'])->name('profile.home');
 });
+//----------------------------------------------------------------------->>>>>
+
+
 // tow factor user
 Route::get('towfactore',[\App\Http\Controllers\front\profileController::class,'towfactore'])->name('profile.towfactore');
 Route::post('towfactore',[\App\Http\Controllers\front\profileController::class,'towfactoreAuth'])->name('request.towfactore');
 Route::get('verify_phone_number',[\App\Http\Controllers\front\profileController::class,'verifyPage'])->name('verify.index');
 route::post('verify_phone_number',[\App\Http\Controllers\front\profileController::class,'verifyPhoneNumber'])->name('verify.phone.number');
-
+//----------------------------------------------------------------------->>>>>
 
 
 // token code for authenticated
 Route::get('send-token-code',[\App\Http\Controllers\Auth\AuthTokenController::class,'indexPage'])->name('send-token-code');
 Route::post('send-token-code',[\App\Http\Controllers\Auth\AuthTokenController::class,'postToken']);
-
+//----------------------------------------------------------------------->>>>>
 
 
 
@@ -49,8 +59,11 @@ Route::middleware(['auth','auth.admin'])->prefix('/dashboard')->group(function (
 
     //       Manage Products
     Route::resource('products',\App\Http\Controllers\Admin\ProductController::class)->parameters(['products'=>'id']);
-});
 
+//           Manage Comment
+    Route::resource('comment',\App\Http\Controllers\Admin\CommentsController::class)->parameters(['comment'=>'id']);
+});
+//----------------------------------------------------------------------->>>>>
 
 // route auth
 Auth::routes();

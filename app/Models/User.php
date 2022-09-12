@@ -51,6 +51,11 @@ class User extends Authenticatable
         return $this->hasMany(Activecode::class);
     }
 
+    public function comments(){
+        return $this->belongsToMany(Comment::class);
+    }
+
+
 
 //    check admin or operator user
         public function isAdmin(){
