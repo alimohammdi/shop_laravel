@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master')
-@section('title','داشبورد')
+@section('title','افزودن محصول به فروشگاه')
 @section('content')
 
     <!-- Main Content Area -->
@@ -40,6 +40,21 @@
                                         <input type="file"  name="image" class="form-control"   >
                                     </div>
                                     @error('image')
+                                    <div class="alert alert-danger">
+                                        <span > {{ $message  }}</span>
+                                    </div>
+                                    @enderror
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword11">دسته بندی محصول </label>
+                                        <select name="categories[]" id="categories" class="form-control" multiple>
+                                            @forelse($categories as $cat)
+                                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                            @empty
+                                                    {{ 'دسته بندی موجود نیست' }}
+                                            @endforelse
+                                        </select>
+                                    </div>
+                                    @error('categories')
                                     <div class="alert alert-danger">
                                         <span > {{ $message  }}</span>
                                     </div>

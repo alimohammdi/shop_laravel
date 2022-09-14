@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\createProductRequest;
 use App\Http\Requests\updateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return  view('dashboard.product.create');
+        $categories = Category::all();
+        return  view('dashboard.product.create',compact('categories'));
     }
 
 
@@ -29,7 +31,7 @@ class ProductController extends Controller
         if(!empty($file)){
            $image = md5(time()).".".$file->getClientOriginalExtension();
            $file->move('images/products',$image);
-            Product::create([
+           $product = Product::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'price' => $request->price,
@@ -37,6 +39,8 @@ class ProductController extends Controller
                 'amount' => $request->amount,
                 'user_id' => $request->user_id
             ]);
+           $product->categories()->sync($request['categories']);
+
         }
        $request->session()->flash('create-product-success','محصول با موفقیت اضافه شد');
        return redirect()->route('products.index');
@@ -51,7 +55,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::FindOrFail($id)->first();
-        return  view('dashboard.product.edite',compact('product'));
+        $categories = Category::all();
+        return  view('dashboard.product.edite',compact('product','categories'));
     }
 
     public function update(updateProductRequest  $request, $id)
@@ -67,14 +72,15 @@ class ProductController extends Controller
        }else{
            $image = Product::FindOrFail($id)->image;
     }
-       Product::findOrFail($id)->update([
+       $product = Product::findOrFail($id);
+        $product ->update([
            'title' => $request->title,
            'description' => $request->description,
            'price' => $request->price,
            'amount' => $request->amount,
            'image' => $image
        ]);
-
+        $product->categories()->sync($request['categories']);
         session()->flash('update-product-success','محصول با موفقیت آپدیت شد');
         return redirect()->route('products.index');
     }

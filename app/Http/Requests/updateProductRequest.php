@@ -28,6 +28,7 @@ class updateProductRequest extends FormRequest
             'description' => 'required',
             'amount' => 'required|max:8',
             'price'=> 'required|max:9',
+            'categories' => 'required'
 
         ];
     }

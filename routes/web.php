@@ -62,6 +62,10 @@ Route::middleware(['auth','auth.admin'])->prefix('/dashboard')->group(function (
 
 //           Manage Comment
     Route::resource('comment',\App\Http\Controllers\Admin\CommentsController::class)->parameters(['comment'=>'id']);
+
+//    Manage Category
+    Route::resource('category',\App\Http\Controllers\Admin\CategoryController::class)->parameters(['category'=>'id']);
+
 });
 //----------------------------------------------------------------------->>>>>
 

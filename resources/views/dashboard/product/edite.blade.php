@@ -51,6 +51,21 @@
                                     </div>
                                     @enderror
                                     <div class="form-group">
+                                        <label for="exampleInputPassword11">دسته بندی محصول </label>
+                                        <select name="categories[]" id="categories" class="form-control" multiple>
+                                            @forelse($categories as $cat)
+                                                <option value="{{ $cat->id }}" {{ in_array($cat->id,$product->categories()->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $cat->name }}</option>
+                                            @empty
+                                                {{ 'دسته بندی موجود نیست' }}
+                                            @endforelse
+                                        </select>
+                                    </div>
+                                    @error('categories')
+                                    <div class="alert alert-danger">
+                                        <span > {{ $message  }}</span>
+                                    </div>
+                                    @enderror
+                                    <div class="form-group">
                                         <label for="exampleInputPassword11">موجودی محصول </label>
                                         <input type="text"  name="amount" class="form-control" value="@if(old('amount')) {{ old('amount') }} @else {{ $product->amount }}  @endif"  >
                                     </div>
