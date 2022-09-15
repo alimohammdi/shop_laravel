@@ -57,15 +57,21 @@ Route::middleware(['auth','auth.admin'])->prefix('/dashboard')->group(function (
     //       Manage Users
     Route::resource('users',\App\Http\Controllers\Admin\UsersController::class)->parameters(['users'=>'id']);
 
-    //       Manage Products
+    //     Manage Products
     Route::resource('products',\App\Http\Controllers\Admin\ProductController::class)->parameters(['products'=>'id']);
 
-//           Manage Comment
+
+    //      Manage Comment
     Route::resource('comment',\App\Http\Controllers\Admin\CommentsController::class)->parameters(['comment'=>'id']);
 
-//    Manage Category
-    Route::resource('category',\App\Http\Controllers\Admin\CategoryController::class)->parameters(['category'=>'id']);
 
+    //    Manage Category
+    Route::resource('category',\App\Http\Controllers\Admin\CategoryController::class)->parameters(['category'=>'id']);
+//   Manage  Attribute
+    Route::resource('attribute',\App\Http\Controllers\Admin\AttributeController::class)->parameters(['attribute'=>'id']);
+    Route::get('attribute/value/{id}',[ App\Http\Controllers\Admin\AttributeController::class,'getAddValue' ])->name('attribute.get.value');
+    Route::post('attribute/add-value/{id}',[ App\Http\Controllers\Admin\AttributeController::class,'postAddValue' ])->name('attribute.add.value');
+    Route::delete('attribute/delete/{id}',[\App\Http\Controllers\Admin\AttributeController::class,'destroyValue'])->name('attribute.delete.value');
 });
 //----------------------------------------------------------------------->>>>>
 

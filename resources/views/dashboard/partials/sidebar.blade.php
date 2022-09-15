@@ -24,8 +24,15 @@
         <li class="treeview @php if( (request()->is('dashboard/category')) || ( request()->is('dashboard/category/show'))){echo  'active';} @endphp">
             <a href="javascript:void(0)"><i class="zmdi zmdi-apps "></i> <span>مدیریت دسته بندی ها</span> <i class="fa fa-angle-left"></i></a>
             <ul class="treeview-menu">
-                <li ><a href="{{ route('category.index') }}" style="{{ request()->is('dashboard/category') ? 'color:black' : ''}}">نمایش دسته بندی ها </a></li>
+                <li ><a href="{{ route('category.index') }}" style="{{ request()->is('dashboard/category') ? 'color:black' : ''}}">نمایش دسته بندی ها        </a></li>
                 <li ><a href="{{ route('category.create') }}" style="{{ request()->is('dashboard/category/create') ? 'color:black' : ''}}">اضافه کردن دسته بندی جدید</a></li>
+            </ul>
+        </li>
+        <li class="treeview @php if( (request()->is('dashboard/attribute')) || ( request()->is('dashboard/attribute/show'))){echo  'active';} @endphp">
+            <a href="javascript:void(0)"><i class="zmdi zmdi-apps "></i> <span>مدیریت ویژگی ها</span> <i class="fa fa-angle-left"></i></a>
+            <ul class="treeview-menu">
+                <li ><a href="{{ route('attribute.index') }}" style="{{ request()->is('dashboard/attribute') ? 'color:black' : ''}}">نمایش ویژگی ها </a></li>
+                <li ><a href="{{ route('attribute.create') }}" style="{{ request()->is('dashboard/attribute/create') ? 'color:black' : ''}}">اضافه کردن ویژگی جدید</a></li>
             </ul>
         </li>
         <li class="treeview">
