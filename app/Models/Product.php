@@ -10,7 +10,6 @@ class Product extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-
     public function comments(){
         return $this->morphMany(Comment::class,'commentable');
     }
@@ -20,5 +19,9 @@ class Product extends Model
     }
     public function attributes(){
         return  $this->belongsToMany(Attribute::class);
+    }
+
+    public function carts(){
+        return $this->belongsToMany(Cart::class);
     }
 }

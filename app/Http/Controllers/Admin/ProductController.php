@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\createProductRequest;
 use App\Http\Requests\updateProductRequest;
+use App\Models\Attribute;
+use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -20,12 +22,16 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return  view('dashboard.product.create',compact('categories'));
+        $attribute = Attribute::all();
+        $values = AttributeValue::all();
+        return  view('dashboard.product.create',compact('categories','attribute','values'));
     }
 
 
     public function store(createProductRequest $request)
     {
+        $attributeValue = $request->attributeValue;
+
        $file = $request->file('image');
         $image = "";
         if(!empty($file)){
@@ -40,6 +46,13 @@ class ProductController extends Controller
                 'user_id' => $request->user_id
             ]);
            $product->categories()->sync($request['categories']);
+
+
+//           add attribute product
+             foreach($attributeValue as $att_Value){
+                 $attributeForValue = explode('-',$att_Value);
+                 $product->attributes()->attach($attributeForValue[0],['value_id'=> $attributeForValue[1]]);
+             }
 
         }
        $request->session()->flash('create-product-success','محصول با موفقیت اضافه شد');

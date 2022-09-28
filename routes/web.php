@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 
 // FRONT
-Route::get('/', function () {
-    return view('front.index');
-});
+Route::get('/',[\App\Http\Controllers\front\FrontController::class,'frontProduct']);
+
+// Cart
+Route::resource('cart',\App\Http\Controllers\front\CartController::class)->parameters(['cart'=>'id']);
 //----------------------------------------------------------------------->>>>>
 
 // products page

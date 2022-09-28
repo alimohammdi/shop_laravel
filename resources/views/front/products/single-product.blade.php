@@ -34,27 +34,27 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="product-gallery default">
-                                    <img class="zoom-img" id="img-product-zoom" src="assets/img/product/1335154.jpg" data-zoom-image="assets/img/product/13351544.jpg" width="411" />
+                                    <img class="zoom-img" id="img-product-zoom" src="{{ asset('images/products/'.$product->image) }}" data-zoom-image="assets/img/product/13351544.jpg" width="411" />
 
-                                    <div id="gallery_01f" style="width:500px;float:left;">
-                                        <ul class="gallery-items">
-                                            <li>
-                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/2114766.jpg" data-zoom-image="assets/img/product/2114766.jpg">
-                                                    <img src="assets/img/product/2114766.jpg" width="100" /></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="elevatezoom-gallery" data-image="assets/img/product/3694075.jpg" data-zoom-image="assets/img/product/3694075.jpg"><img src="assets/img/product/3694075.jpg" width="100" /></a>
-                                            </li>
-                                            <li>
-                                                <a href="tester" class="elevatezoom-gallery" data-image="assets/img/product/1335154.jpg" data-zoom-image="assets/img/product/1335154.jpg">
-                                                    <img src="assets/img/product/1335154.jpg" width="100" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="tester" class="elevatezoom-gallery" data-image="assets/img/product/110197298.jpg" data-zoom-image="assets/img/product/110197298.jpg" class="slide-content"><img src="assets/img/product/110197298.jpg" height="68" /></a>
-                                            </li>
-                                        </ul>
-                                    </div>
+{{--                                    <div id="gallery_01f" style="width:500px;float:left;">--}}
+{{--                                        <ul class="gallery-items">--}}
+{{--                                            <li>--}}
+{{--                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/2114766.jpg" data-zoom-image="assets/img/product/2114766.jpg">--}}
+{{--                                                    <img src="assets/img/product/2114766.jpg" width="100" /></a>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <a href="#" class="elevatezoom-gallery" data-image="assets/img/product/3694075.jpg" data-zoom-image="assets/img/product/3694075.jpg"><img src="assets/img/product/3694075.jpg" width="100" /></a>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <a href="tester" class="elevatezoom-gallery" data-image="assets/img/product/1335154.jpg" data-zoom-image="assets/img/product/1335154.jpg">--}}
+{{--                                                    <img src="assets/img/product/1335154.jpg" width="100" />--}}
+{{--                                                </a>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <a href="tester" class="elevatezoom-gallery" data-image="assets/img/product/110197298.jpg" data-zoom-image="assets/img/product/110197298.jpg" class="slide-content"><img src="assets/img/product/110197298.jpg" height="68" /></a>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
+{{--                                    </div>--}}
                                 </div>
                                 <ul class="gallery-options">
                                     <li>
@@ -121,8 +121,8 @@
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="product-title default">
                                     <h1>
-                                        گوشی موبایل اپل مدل iPhone X ظرفیت 256 گیگابایت
-                                        <span>Apple iPhone X 256GB Mobile Phone</span></h1>
+                                        {{ $product->title }}
+                                        <span>....</span></h1>
                                 </div>
                                 <div class="product-directory default">
                                     <ul>
@@ -133,7 +133,7 @@
                                         <li>
                                             <span>دسته‌بندی</span> :
                                             <a href="#" class="btn-link-border">
-                                                ساعت هوشمند
+
                                             </a>
                                         </li>
                                     </ul>
@@ -168,7 +168,7 @@
                                 </div>
                                 <div class="price-product defualt">
                                     <div class="price-value">
-                                        <span> ۱۵,۳۹۰,۰۰۰ </span>
+                                        <span> {{ $product->price }} </span>
                                         <span class="price-currency">تومان</span>
                                     </div>
                                     <div class="price-discount" data-title="تخفیف">
@@ -178,12 +178,20 @@
                                         <span>%</span>
                                     </div>
                                 </div>
+{{--                                 cart form ------------------------------------------------------------------ --}}
                                 <div class="product-add default">
                                     <div class="parent-btn">
-                                        <a href="#" class="dk-btn dk-btn-info">
-                                            افزودن به سبد خرید
-                                            <i class="now-ui-icons shopping_cart-simple"></i>
-                                        </a>
+                                        <div class="form-group">
+                                            <form action="{{ route('cart.store') }}" method="POST"  >
+                                                @csrf
+                                                <lable> <span>تعداد :</span> </lable>
+                                                <br>
+                                                <input type="number" name="quantity"  class="form-control text_bold" style="width:355px"   value="1">
+                                                <input type="hidden" name="product_id"  value="{{ $product->id }}">
+                                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                                <input type="submit" name="submit" value="افزودن به سبد خرید" class="dk-btn dk-btn-info me-2">
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -193,31 +201,17 @@
                                 </div>
                                 <div class="product-params default">
                                     <ul data-title="ویژگی‌های محصول">
+                                        @foreach($product->attributes as $att)
+                                            <li>
+                                                <span>{{ $att->name }}: </span>
+                                                <span> .... </span>
+                                            </li>
+                                        @endforeach
                                         <li>
                                             <span>حافظه داخلی: </span>
                                             <span> 256 گیگابایت </span>
                                         </li>
-                                        <li>
-                                            <span>شبکه های ارتباطی: </span>
-                                            <span> 2G,3G,4G </span>
-                                        </li>
-                                        <li>
-                                            <span>رزولوشن عکس: </span>
-                                            <span> 12.0 مگاپیکسل</span>
-                                        </li>
-                                        <li>
-                                            <span>تعداد سیم کارت: </span>
-                                            <span> تک </span>
-                                        </li>
-                                        <li>
-                                            <span>ویژگی‌های خاص: </span>
-                                            <span> مقاوم در برابر آب
-                                                    مناسب عکاسی
-                                                    مناسب عکاسی سلفی
-                                                    مناسب بازی
-                                                    مجهز به حس‌گر تشخیص چهره
-                                                </span>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -606,3 +600,4 @@
     </main>
     <!-- main -->
 @endsection
+

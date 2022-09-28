@@ -158,14 +158,28 @@
             افزودن نظر
             <span>نظر خود را در مورد محصول مطرح نمایید</span>
         </h2>
+
+
         <form action="{{ route('send.comment') }}" method="post" class="comment" id="comments">
             @csrf
-            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}" >
+            @auth
+                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}" >
+            @endauth
+            @error('user_id')
+                 <span class="alert alert-danger" > {{ $message }}</span>
+            @enderror
             <input type="hidden" name="commentable_id" value="{{ $product->id }}" >
             <input type="hidden" name="commentable_type" value="{{ get_class($product) }}" >
             <input type="hidden" name="parent_id" value="0" >
             <textarea class="form-control" name="comment" placeholder="نظر" rows="5"></textarea>
+            @error('comment')
+            <span class="alert alert-danger" > {{ $message }}</span>
+            @enderror
             <button name="submit" class="btn btn-default">ارسال نظر</button>
+            @guest
+                <span class="alert alert-danger m-2 p-1"> برای نظردهی لطفا ابتدا وارد اکانت خود شوید  <a href="{{ route('login') }}" class="text_bold text-dark">  <bold>ورود</bold>  </a></span>
+                <br>
+            @endguest
         </form>
     </article>
 </div>

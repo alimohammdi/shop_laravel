@@ -55,6 +55,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Comment::class);
     }
 
+    public function carts(){
+        return $this->belongsToMany(Cart::class);
+    }
 
 
 //    check admin or operator user

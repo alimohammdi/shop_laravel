@@ -51,48 +51,47 @@
                         </ul>
                     @endif
                 </div>
+{{--                 cart --}}
                 <div class="cart dropdown">
                     <a href="#" class="btn dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink1">
                         <i class="now-ui-icons shopping_cart-simple"></i>
                         سبد خرید
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                        <div class="basket-header">
-                            <div class="basket-total">
-                                <span>مبلغ کل خرید:</span>
-                                <span> ۲۳,۵۰۰</span>
-                                <span> تومان</span>
-                            </div>
-                            <a href="#" class="basket-link">
-                                <span>مشاهده سبد خرید</span>
-                                <div class="basket-arrow"></div>
-                            </a>
-                        </div>
-                        <ul class="basket-list">
-                            <li>
-                                <a href="#" class="basket-item">
-                                    <button class="basket-item-remove"></button>
-                                    <div class="basket-item-content">
-                                        <div class="basket-item-image">
-                                            <img alt="" src="assets/img/cart/2324935.jpg">
-                                        </div>
-                                        <div class="basket-item-details">
-                                            <div class="basket-item-title">هندزفری بلوتوث مدل S530
-                                            </div>
-                                            <div class="basket-item-params">
-                                                <div class="basket-item-props">
-                                                    <span> ۱ عدد</span>
-                                                    <span>رنگ مشکی</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                        <a href="#" class="basket-submit">ورود و ثبت سفارش</a>
+{{--                        <div class="basket-header">--}}
+{{--                            <div class="basket-total">--}}
+{{--                                <span>مبلغ کل خرید:</span>--}}
+{{--                                <span> ۲۳,۵۰۰</span>--}}
+{{--                                <span> تومان</span>--}}
+{{--                            </div>--}}
+
+{{--                        </div>--}}
+{{--                        <ul class="basket-list">--}}
+{{--                            <li>--}}
+{{--                                <a href="#" class="basket-item">--}}
+{{--                                    <button class="basket-item-remove"></button>--}}
+{{--                                    <div class="basket-item-content">--}}
+{{--                                        <div class="basket-item-image">--}}
+{{--                                            <img alt="" src="assets/img/cart/2324935.jpg">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="basket-item-details">--}}
+{{--                                            <div class="basket-item-title">هندزفری بلوتوث مدل S530--}}
+{{--                                            </div>--}}
+{{--                                            <div class="basket-item-params">--}}
+{{--                                                <div class="basket-item-props">--}}
+{{--                                                    <span> ۱ عدد</span>--}}
+{{--                                                    <span>رنگ مشکی</span>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+                        <a href="{{ route('cart.index') }}" class="basket-submit">مشاهده و ثبت سفارش</a>
                     </ul>
                 </div>
+{{--                end cart --}}
             </div>
         </div>
     </div>
