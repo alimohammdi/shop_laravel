@@ -59,6 +59,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Cart::class);
     }
 
+    public function orders(){
+        return $this->belongsToMany(Order::class);
+    }
+    public function transaction(){
+        return $this->belongsToMany(Transaction::class);
+    }
 
 //    check admin or operator user
         public function isAdmin(){

@@ -13,4 +13,12 @@ class Basket extends Model
     public function carts(){
         return $this->belongsToMany(Cart::class);
     }
+
+
+    public function orders(){
+        return $this->belongsToMany(Order::class);
+    }
+    public function transaction(){
+        return $this->belongsToMany(Transaction::class);
+    }
 }

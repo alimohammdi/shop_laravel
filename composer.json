@@ -12,7 +12,9 @@
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
-        "laravelcollective/html": "^6.3"
+        "laravelcollective/html": "^6.3",
+        "shetabit/payment": "^4.3",
+      "ext-soap": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

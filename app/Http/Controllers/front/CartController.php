@@ -14,8 +14,8 @@ class CartController extends Controller
     public function index()
     {
         $products = Cart::with('product')->where('user_id',auth()->user()->id)->get();
-
-        return view('front.cart.cart',compact('products'));
+        $basket = Basket::where('user_id',auth()->user()->id)->where('isActive',1)->first() ;
+        return view('front.cart.cart',compact('products','basket'));
     }
 
     public function create()

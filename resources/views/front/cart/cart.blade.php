@@ -2,8 +2,9 @@
 @section('title','سبد خرید')
 @section('content')
     @php
-        $allPriceProduct = 0;
-        $countProduct =0;
+
+            $allPriceProduct = 0;
+            $countProduct =0;
     @endphp
     <!-- main -->
     <main class="cart-page default">
@@ -23,7 +24,7 @@
                                 <td>تعداد</td>
                                 <td>مبلغ</td>
                             </tr>
-
+                            @if(isset($basket))
                             @forelse($products as $pro)
                                 <tr class="checkout-item">
                                     @php
@@ -52,6 +53,12 @@
                                 </tr>
 
                             @endforelse
+                                @else
+                                <tr class="checkout-item">
+                                    <td> <span class="text-color-red"> محصولی در سبد خرید شما موجود نیست </span></td>
+                                </tr>
+
+                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -63,7 +70,7 @@
                                 <ul class="checkout-summary-summary">
                                     <li><span>مبلغ کل ({{ $countProduct }} کالا)</span><span>{{number_format($allPriceProduct)}}</span></li>
                                     <li>
-                                        <span>هزینه ارسال : {{ number_format(20000) }} تومان </span>
+                                        <span>هزینه ارسال : {{ number_format(0) }} تومان </span>
 {{--                                        <span>وابسته به آدرس<span class="wiki wiki-holder"><span--}}
 {{--                                                    class="wiki-sign"></span>--}}
                                                     <div class="wiki-container js-dk-wiki is-right">
@@ -89,16 +96,27 @@
                                 <div class="checkout-summary-content">
                                     <div class="checkout-summary-price-title">مبلغ قابل پرداخت:</div>
                                     <div class="checkout-summary-price-value">
-                                        <span class="checkout-summary-price-value-amount">{{  $allPriceProduct != null ? number_format($allPriceProduct + 20000) :  ' 0 '}}</span>تومان
+                                        <span class="checkout-summary-price-value-amount">{{  $allPriceProduct != null ? number_format($allPriceProduct) :  ' 0 '}}</span>تومان
                                     </div>
-                                    <a href="#" class="selenium-next-step-shipping">
-                                        <div class="parent-btn">
-                                            <button class="dk-btn dk-btn-info">
-                                                ادامه ثبت سفارش
-                                                <i class="now-ui-icons shopping_basket"></i>
-                                            </button>
-                                        </div>
-                                    </a>
+                                   @if(isset($basket))
+                                        <a href="{{ route('payment.product',$basket->id) }}" class="selenium-next-step-shipping">
+                                            <div class="parent-btn">
+                                                <button class="dk-btn dk-btn-info">
+                                                    پرداخت سفارش
+                                                    <i class="now-ui-icons shopping_basket"></i>
+                                                </button>
+                                            </div>
+                                        </a>
+                                       @else
+                                        <a href="#" class="selenium-next-step-shipping">
+                                            <div class="parent-btn">
+                                                <button class="dk-btn dk-btn-info">
+                                                    مبلغی برای پرداخت موجود نیست
+                                                    <i class="now-ui-icons shopping_basket"></i>
+                                                </button>
+                                            </div>
+                                        </a>
+                                    @endif
                                     <div>
                                             <span>
                                                 کالاهای موجود در سبد شما ثبت و رزرو نشده‌اند، برای ثبت سفارش مراحل بعدی

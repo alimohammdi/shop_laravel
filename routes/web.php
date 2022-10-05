@@ -73,6 +73,11 @@ Route::middleware(['auth','auth.admin'])->prefix('/dashboard')->group(function (
     Route::get('attribute/value/{id}',[ App\Http\Controllers\Admin\AttributeController::class,'getAddValue' ])->name('attribute.get.value');
     Route::post('attribute/add-value/{id}',[ App\Http\Controllers\Admin\AttributeController::class,'postAddValue' ])->name('attribute.add.value');
     Route::delete('attribute/delete/{id}',[\App\Http\Controllers\Admin\AttributeController::class,'destroyValue'])->name('attribute.delete.value');
+
+//   Manage  Order
+    Route::resource('order',\App\Http\Controllers\Admin\OrderController::class)->parameters(['order'=>'id']);
+
+
 });
 //----------------------------------------------------------------------->>>>>
 
@@ -81,3 +86,10 @@ Auth::routes();
 // google account
 Route::get('/auth/redirect',[\App\Http\Controllers\Auth\GoogleAuthController::class,'redirect'])->name('google.redirect');
 Route::get('/auth/google/callback',[\App\Http\Controllers\Auth\GoogleAuthController::class,'callback'])->name('google.callback');
+
+
+
+
+// Purchase Route
+Route::get('/product/{basket}/purchase',[\App\Http\Controllers\PurchaseController::class,'purchase'])->name('payment.product');
+Route::get('/product/{id}/purchase/result',[\App\Http\Controllers\PurchaseController::class,'result'])->name('payment.product.result');
