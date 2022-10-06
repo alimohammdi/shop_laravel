@@ -5,7 +5,10 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\Activecode;
+use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class profileController extends Controller
 {
@@ -74,5 +77,10 @@ class profileController extends Controller
     }
 
 
-
+    public function profileOrders(){
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->first();
+        $carts = Cart::where('basket_id', $orders->basket_id)->get();
+        return view('front.profile.profile-order',compact('orders','carts'));
+    }
 }

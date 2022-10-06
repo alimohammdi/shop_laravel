@@ -23,7 +23,7 @@
                                     <tr>
                                         <th>شماره سفارش</th>
                                         <th>نام کاربر</th>
-                                        <th>قیمت سفارش</th>
+                                        <th> قیمت سفارش (تومان)</th>
                                         <th>وضعیت پرداخت</th>
                                         <th>وضعیت ارسال</th>
                                         <th>عملیات</th>
@@ -34,9 +34,9 @@
                                     @foreach ($orders as $order)
 
                                         <tr>
-                                            <td>{{ $orders->id }}</td>
+                                            <td>{{ $order->id }}</td>
                                             <td>{{  $order->user->name}}</td>
-                                            <td>{{ $order->price }}</td>
+                                            <td>{{ number_format($order->price) }}</td>
 
                                             <td>
                                             @if($order->status == 'paid')
@@ -58,6 +58,7 @@
                                                 {!! Form::open(['route'=>['order.destroy','id'=>$order->id],'method'=>'delete']) !!}
                                                 {!! Form::submit('حذف',['class'=>'btn btn-danger btn-sm mb-1 ','onclick' => 'return confirm("آیا از حذف سفارش اطمینان دارید ؟؟")']); !!}
                                                 {!! Form::close() !!}
+                                                <a href="{{ route('invoice.index',$order->basket_id) }}" class="btn btn-primary">نمایش سفارش</a>
                                             </td>
                                         </tr>
                                     @endforeach

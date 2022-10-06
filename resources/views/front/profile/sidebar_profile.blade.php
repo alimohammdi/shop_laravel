@@ -70,9 +70,9 @@
                 </a>
             </li>
             <li>
-                <a href="profile-orders.html">
+                <a href="{{ route('profile.orders') }}" {{ request()->is('profile/order') ? 'class=active' : '' }} >
                     <i class="now-ui-icons shopping_basket"></i>
-                    همه سفارش ها
+                    اخرین سفارش
                 </a>
             </li>
             <li>

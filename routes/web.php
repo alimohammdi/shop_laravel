@@ -32,6 +32,7 @@ Route::post('send-comment',[\App\Http\Controllers\ProductFrontController::class,
 // profile
 Route::group(['prefix'=>"profile",'middleware'=>'auth'],function () {
     Route::get('/',[\App\Http\Controllers\front\profileController::class,'index'])->name('profile.home');
+    route::get('/order',[\App\Http\Controllers\front\profileController::class,'profileOrders'])->name('profile.orders');
 });
 //----------------------------------------------------------------------->>>>>
 
@@ -76,8 +77,8 @@ Route::middleware(['auth','auth.admin'])->prefix('/dashboard')->group(function (
 
 //   Manage  Order
     Route::resource('order',\App\Http\Controllers\Admin\OrderController::class)->parameters(['order'=>'id']);
-
-
+    Route::get('order/invoice/{id}',[\App\Http\Controllers\Admin\OrderController::class,'invoice'])->name('invoice.index');
+    Route::patch('invoice/status/update/{id}',[\App\Http\Controllers\Admin\OrderController::class,'invoiceStatus'])->name('invoice.status');
 });
 //----------------------------------------------------------------------->>>>>
 
