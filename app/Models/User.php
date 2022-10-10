@@ -65,6 +65,9 @@ class User extends Authenticatable
     public function transaction(){
         return $this->belongsToMany(Transaction::class);
     }
+    public function seo(){
+        return $this->hasMany(Seo::class);
+    }
 
 //    check admin or operator user
         public function isAdmin(){

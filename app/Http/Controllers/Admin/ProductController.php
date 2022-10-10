@@ -9,6 +9,7 @@ use App\Models\Attribute;
 use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Seo;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -45,6 +46,16 @@ class ProductController extends Controller
                 'amount' => $request->amount,
                 'user_id' => $request->user_id
             ]);
+           // create seo post
+           if(isset($product) && !empty($request->title_seo) && !empty($request->description_seo)){
+               $seo = Seo::create([
+                   'title' => $request->title_seo,
+                   'description' =>$request->description_seo,
+                   'user_id' => $request->user_id,
+                   'keywords' => $request->keywords,
+                   'product_id' => $product->id
+               ]);
+           }
            $product->categories()->sync($request['categories']);
 
 

@@ -8,10 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport' />
+
     {{--    script for sweet alert--}}
     <script src="{{ asset('js/app.js') }}"></script>
 
     <title>@yield('title')</title>
+    {!!  SEO::generate(true) !!}
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="{{ asset('assets/fonts/font-awesome/css/font-awesome.min.css') }}" />
     <!-- CSS Files -->

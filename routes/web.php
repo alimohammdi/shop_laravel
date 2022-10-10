@@ -79,6 +79,10 @@ Route::middleware(['auth','auth.admin'])->prefix('/dashboard')->group(function (
     Route::resource('order',\App\Http\Controllers\Admin\OrderController::class)->parameters(['order'=>'id']);
     Route::get('order/invoice/{id}',[\App\Http\Controllers\Admin\OrderController::class,'invoice'])->name('invoice.index');
     Route::patch('invoice/status/update/{id}',[\App\Http\Controllers\Admin\OrderController::class,'invoiceStatus'])->name('invoice.status');
+
+    // Manage Seo
+
+    Route::resource('seo',\App\Http\Controllers\Admin\SeoController::class)->parameters(['seo'=>'id']);
 });
 //----------------------------------------------------------------------->>>>>
 
