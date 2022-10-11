@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Product;
+use App\Models\Seo;
 use Illuminate\Http\Request;
 
 class ProductFrontController extends Controller
@@ -16,6 +17,14 @@ class ProductFrontController extends Controller
 
     public function showSingleProduct(Product $product){
         $comment =  $product->find($product->id)->comments()->where('approved','1')->get();
+        $seo = Seo::where('product_id', $product->id)->first();
+
+        if($seo){
+            $this->seo()->setTitle($seo->title)
+                ->setDescription($seo->description);
+        }else{
+            $this->seo()->setTitle($product->title);
+        }
         return view('front.products.single-product', compact('product','comment'));
     }
 
