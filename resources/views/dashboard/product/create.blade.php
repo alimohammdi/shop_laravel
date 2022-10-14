@@ -70,6 +70,21 @@
                                                 </div>
                                                 @enderror
                                                 <div class="form-group">
+                                                    <label for="exampleInputPassword11">برند محصول </label>
+                                                    <select name="brand"   class="form-control"  >
+                                                        @forelse($brands as $brand)
+                                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                                        @empty
+                                                            {{ 'برند موجود نیست' }}
+                                                        @endforelse
+                                                    </select>
+                                                </div>
+                                                @error('brand')
+                                                <div class="alert alert-danger">
+                                                    <span > {{ $message  }}</span>
+                                                </div>
+                                                @enderror
+                                                <div class="form-group">
                                                     <label for="exampleInputPassword11">موجودی محصول </label>
                                                     <input type="number"  name="amount" class="form-control" value="{{ old('amount') }}"  >
                                                 </div>

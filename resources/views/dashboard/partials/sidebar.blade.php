@@ -49,5 +49,9 @@
 
             </ul>
         </li>
+        <li class="  @php if( (request()->is('brand/index'))){echo  'active';} @endphp">
+            <a href="{{ route('brand.index') }}"><i class="zmdi zmdi-apps "></i> <span>مدیریت برند ها</span> <i class="fa fa-angle-left"></i></a>
+        </li>
+
     </ul>
 </nav>

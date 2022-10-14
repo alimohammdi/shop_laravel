@@ -28,4 +28,8 @@ class Product extends Model
     public function seo(){
         return $this->hasOne(Seo::class);
     }
+
+    public function brand(){
+        return $this->belongsTo(Brand::class);
+    }
 }

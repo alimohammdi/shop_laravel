@@ -66,6 +66,19 @@
                                     </div>
                                     @enderror
                                     <div class="form-group">
+                                        <label for="exampleInputPassword11"> برند محصول </label>
+                                        <select name="brand"  class="form-control"  >
+                                            @foreach($brands as $brand)
+                                                <option value="{{ $brand->id }}" @if($product->brand_id == $brand->id) {{ 'selected' }}   @endif>{{ $brand->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @error('brand')
+                                    <div class="alert alert-danger">
+                                        <span > {{ $message  }}</span>
+                                    </div>
+                                    @enderror
+                                    <div class="form-group">
                                         <label for="exampleInputPassword11">موجودی محصول </label>
                                         <input type="text"  name="amount" class="form-control" value="@if(old('amount')) {{ old('amount') }} @else {{ $product->amount }}  @endif"  >
                                     </div>

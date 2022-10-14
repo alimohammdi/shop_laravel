@@ -7,6 +7,7 @@ use App\Http\Requests\createProductRequest;
 use App\Http\Requests\updateProductRequest;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Seo;
@@ -25,7 +26,8 @@ class ProductController extends Controller
         $categories = Category::all();
         $attribute = Attribute::all();
         $values = AttributeValue::all();
-        return  view('dashboard.product.create',compact('categories','attribute','values'));
+        $brands = Brand::all();
+        return  view('dashboard.product.create',compact('categories','attribute','values','brands'));
     }
 
 
@@ -43,6 +45,7 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'price' => $request->price,
                 'image' => $image,
+                'brand_id' => $request->brand,
                 'amount' => $request->amount,
                 'user_id' => $request->user_id
             ]);
@@ -80,7 +83,8 @@ class ProductController extends Controller
     {
         $product = Product::FindOrFail($id)->first();
         $categories = Category::all();
-        return  view('dashboard.product.edite',compact('product','categories'));
+        $brands = Brand::all();
+        return  view('dashboard.product.edite',compact('product','categories','brands'));
     }
 
     public function update(updateProductRequest  $request, $id)
@@ -102,6 +106,7 @@ class ProductController extends Controller
            'description' => $request->description,
            'price' => $request->price,
            'amount' => $request->amount,
+           'brand_id' => $request->brand,
            'image' => $image
        ]);
         $product->categories()->sync($request['categories']);

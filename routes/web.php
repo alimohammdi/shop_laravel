@@ -79,6 +79,8 @@ Route::middleware(['auth','auth.admin'])->prefix('/dashboard')->group(function (
     Route::resource('order',\App\Http\Controllers\Admin\OrderController::class)->parameters(['order'=>'id']);
     Route::get('order/invoice/{id}',[\App\Http\Controllers\Admin\OrderController::class,'invoice'])->name('invoice.index');
     Route::patch('invoice/status/update/{id}',[\App\Http\Controllers\Admin\OrderController::class,'invoiceStatus'])->name('invoice.status');
+    // Manage Brands
+    Route::resource('brand',\App\Http\Controllers\admin\BrandController::class)->parameters(['brand'=>'id']);
 
     // Manage Seo
 
